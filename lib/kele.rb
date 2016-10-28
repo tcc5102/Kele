@@ -1,7 +1,11 @@
 require "HTTParty"
 require "json"
+require_relative "roadmap"
+
 class Kele
   include HTTParty
+  include Roadmap
+
   def initialize(email, password)
     @base_uri = "https://www.bloc.io/api/v1"
     response = self.class.post("#{@base_uri}/sessions", body: { email: email, password: password })
