@@ -12,9 +12,9 @@ class Kele
     @auth_token = response["auth_token"]
   end
 
-  def get_me
+  def get_self
     response = self.class.get("#{@base_uri}/users/me", headers: { "authorization" => @auth_token })
-    @get_me = JSON.parse(response.body)
+    @user = JSON.parse(response.body)
   end
 
   def get_mentor_availability(mentor_id)
