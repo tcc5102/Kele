@@ -1,10 +1,12 @@
 require "HTTParty"
 require "json"
 require_relative "roadmap"
+require_relative "messages"
 
 class Kele
   include HTTParty
   include Roadmap
+  include Messages
 
   def initialize(email, password)
     @base_uri = "https://www.bloc.io/api/v1"
