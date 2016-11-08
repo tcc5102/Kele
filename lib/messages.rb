@@ -1,7 +1,12 @@
 module Messages
-  def get_messages
-    response = self.class.get("#{@base_uri}/message_threads", headers: { "authorization" => @auth_token })
-    @messages = JSON.parse(response.body)
+  def get_messages( page = nil )
+    if page.nil? #retrieve all messages
+      response = self.class.get("#{@base_uri}/message_threads", headers: { "authorization" => @auth_token })
+      @messages = JSON.parse(response.body)
+    else #retrieve page specified
+      response = self.class.get("#{@base_uri}/message_threads?page=#{page}", headers: { "authorization" => @auth_token })
+      @messages = JSON.parse(response.body)
+    end
   end
 
   def create_message(user_id, recipient_id, subject, stripped)
