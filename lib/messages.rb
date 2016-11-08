@@ -11,6 +11,6 @@ module Messages
 
   def create_message(user_id, recipient_id, subject, stripped)
     response = (self.class.post("#{@base_uri}/messages", body: { user_id: user_id, recipient_id: recipient_id, subject: subject, stripped: stripped }, headers: { "authorization" => @auth_token }))
-    puts response.code
+    puts response
   end
 end
